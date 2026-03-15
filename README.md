@@ -183,7 +183,6 @@ TIMELINER_USERNAME=li.ming.pm TIMELINER_PASSWORD=Demo@12345 \
 |------|------|------|
 | `get_my_tasks` | 我的任务列表 | User |
 | `get_today_goals` | 今日目标 | User |
-| `update_task_progress` | 更新进度 | User |
 | `submit_task_completion` | 提交完成 | User |
 
 ### 上下文查询（3）
@@ -216,7 +215,7 @@ TIMELINER_USERNAME=li.ming.pm TIMELINER_PASSWORD=Demo@12345 \
 ```
 1. get_today_goals(project_id)
    → 按优先级 + 关键路径排序的待办任务
-2. update_task_progress(task_id, 0.6)
+2. update_task(task_id, progress=0.6, status="InProgress")
 3. submit_task_completion(task_id)
 ```
 

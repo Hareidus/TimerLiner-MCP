@@ -34,15 +34,17 @@ async def test_get_today_goals(admin_client):
     assert len(my_tasks) == 2
 
 
-async def test_update_task_progress(admin_client):
-    project = await create_test_project(admin_client)
-    task = await create_test_task(admin_client, project["id"])
-    resp = await admin_client.post(f"/api/tasks/{task['id']}/progress", json={
-        "progress": 0.6,
-    })
-    assert resp.status_code == 200
-    data = resp.json()["data"]
-    assert data["task_progress"] == 0.6
+# DEPRECATED: update_task_progress tool has been removed
+# Use update_task instead to ensure status-progress consistency
+# async def test_update_task_progress(admin_client):
+#     project = await create_test_project(admin_client)
+#     task = await create_test_task(admin_client, project["id"])
+#     resp = await admin_client.post(f"/api/tasks/{task['id']}/progress", json={
+#         "progress": 0.6,
+#     })
+#     assert resp.status_code == 200
+#     data = resp.json()["data"]
+#     assert data["task_progress"] == 0.6
 
 
 async def test_submit_task_completion(admin_client):

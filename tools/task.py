@@ -146,28 +146,28 @@ async def get_today_goals(project_id: str, session_id: str = DEFAULT_SESSION) ->
     return {"success": True, "data": my_tasks}
 
 
-@register_tool
-async def update_task_progress(
-    task_id: str,
-    progress: float,
-    actual_duration: float | None = None,
-    status: str | None = None,
-    comment: str | None = None,
-    blocked_reason: str | None = None,
-    session_id: str = DEFAULT_SESSION,
-) -> dict:
-    """更新任务进度。progress 范围 0.0~1.0。当 status=Blocked 时可通过 blocked_reason 记录阻塞原因。"""
-    require_login(session_id)
-    payload: dict = {"progress": progress}
-    if actual_duration is not None:
-        payload["actual_duration"] = actual_duration
-    if status is not None:
-        payload["status"] = status
-    if comment is not None:
-        payload["comment"] = comment
-    if blocked_reason is not None:
-        payload["blocked_reason"] = blocked_reason
-    return await api_post(f"/tasks/{task_id}/progress", json=payload, session_id=session_id)
+# @register_tool - DEPRECATED: Use update_task instead to ensure status-progress consistency
+# async def update_task_progress(
+#     task_id: str,
+#     progress: float,
+#     actual_duration: float | None = None,
+#     status: str | None = None,
+#     comment: str | None = None,
+#     blocked_reason: str | None = None,
+#     session_id: str = DEFAULT_SESSION,
+# ) -> dict:
+#     """更新任务进度。progress 范围 0.0~1.0。当 status=Blocked 时可通过 blocked_reason 记录阻塞原因。"""
+#     require_login(session_id)
+#     payload: dict = {"progress": progress}
+#     if actual_duration is not None:
+#         payload["actual_duration"] = actual_duration
+#     if status is not None:
+#         payload["status"] = status
+#     if comment is not None:
+#         payload["comment"] = comment
+#     if blocked_reason is not None:
+#         payload["blocked_reason"] = blocked_reason
+#     return await api_post(f"/tasks/{task_id}/progress", json=payload, session_id=session_id)
 
 
 @register_tool
